@@ -1,0 +1,28 @@
+body {
+    background: aliceblue;
+    font-family: Georgia;
+}
+.container {
+    box-sizing: border-box;
+    width: 602px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+canvas {
+    box-sizing: border-box;
+    background: #000;
+    display: block;
+    margin: 0 auto;
+}
+#gameInfo {
+    width: 600px;
+    background: #000;
+    margin-top: 5px;
+}
+#gameScore {
+    width: 20%;
+    float: left;
+    height: 20px;
+
+}
