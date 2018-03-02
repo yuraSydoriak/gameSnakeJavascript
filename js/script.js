@@ -19,13 +19,13 @@ window.onload = function () {
     document.addEventListener("keydown", getDirection);
 
     function getDirection(e){
-        if(e.keyCode == 39){
+        if(e.keyCode == 39 &&  direction != "LEFT"){
             direction = "RIGHT";
-        } else if (e.keyCode == 38){
+        } else if (e.keyCode == 38 &&  direction != "DOWN"){
             direction = "TOP";
-        } else if (e.keyCode == 37){
+        } else if (e.keyCode == 37 &&  direction != "RIGHT"){
             direction = "LEFT";
-        } else if (e.keyCode == 40){
+        } else if (e.keyCode == 40 &&  direction != "TOP"){
             direction = "DOWN";
         }
     }
@@ -42,7 +42,21 @@ window.onload = function () {
     for (var i = snakeLen - 1; i>=0; i--){
         snake.push( {x:i, y:0} );
     }
+    //Create food
+    var  food = {
+        x : Math.floor(Math.random()*(canvasW / snakeW - 1)+1),
+        y : Math.floor(Math.random()*(canvasH / snakeH - 1)+1)
+    }
 
+    function drawFood(x, y) {
+        ctx.fillStyle = "#34ff4c";
+        ctx.fillRect(x*snakeW, y*snakeH, snakeW, snakeH);
+
+        ctx.fillStyle = "#000";
+        ctx.strokeRect(x*snakeW, y*snakeH, snakeW, snakeH);
+    }
+
+    //Draw element into canvas
     function draw(){
         ctx.clearRect(0, 0, canvasW, canvasH)
         for(var i = 0; i < snake.length; i++){
@@ -50,13 +64,27 @@ window.onload = function () {
             var y = snake[i].y;
             drawSnake(x, y);
         }
+        //DrawFood function execution
+        drawFood(food.x, food.y);
 
-        //Snake head
+        //Snake's head
         var snakeX = snake[0].x;
         var snakeY = snake[0].y;
 
-        //remove last item (Tail of the snake)
-        snake.pop();
+        //Game over if snake kiss the wall or self =)
+        if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH){
+            location.reload();
+        };
+
+        //snake its the
+        if(snakeX == food.x && snakeY == food.y){
+            food = {
+                x : Math.floor(Math.random()*(canvasW / snakeW - 1)+1),
+                y : Math.floor(Math.random()*(canvasH / snakeH - 1)+1)
+            }
+        }else {
+            snake.pop();
+        };
 
         //create new head
         if(direction == "LEFT") snakeX--;
@@ -71,5 +99,5 @@ window.onload = function () {
 
         snake.unshift(newSnakeHead);
     }
-    setInterval(draw, 200);
+    setInterval(draw, 100);
 }
