@@ -15,7 +15,7 @@ window.onload = function () {
     //Default direction
     var direction = "RIGHT";
 
-    //Binding direction
+    //Listening direction change
     document.addEventListener("keydown", getDirection);
 
     function getDirection(e){
@@ -28,6 +28,16 @@ window.onload = function () {
         } else if (e.keyCode == 40 &&  direction != "TOP"){
             direction = "DOWN";
         }
+    }
+
+    //When snake kiss self-body GAME OVER
+    function eatSelf(head,array){
+        for(var i = 0; i < array.length; i++){
+            if(head.x == array[i].x && head.y == array[i].y){
+                return true;
+            }
+        }
+        return false;
     }
 
     function drawSnake(x, y) {
@@ -71,11 +81,6 @@ window.onload = function () {
         var snakeX = snake[0].x;
         var snakeY = snake[0].y;
 
-        //Game over if snake kiss the wall or self =)
-        if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH){
-            location.reload();
-        };
-
         //snake its the
         if(snakeX == food.x && snakeY == food.y){
             food = {
@@ -95,6 +100,11 @@ window.onload = function () {
         var newSnakeHead = {
             x : snakeX,
             y : snakeY
+        }
+
+        //Game over if snake kiss the wall or self =)
+        if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || eatSelf(newSnakeHead,snake)){
+            location.reload();
         }
 
         snake.unshift(newSnakeHead);
