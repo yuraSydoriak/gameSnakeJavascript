@@ -30,8 +30,8 @@ window.onload = function () {
         }
     }
 
-    //When snake kiss self-body GAME OVER
-    function eatSelf(head,array){
+    //When snake kiss self (body) GAME OVER
+    function kissSelf(head,array){
         for(var i = 0; i < array.length; i++){
             if(head.x == array[i].x && head.y == array[i].y){
                 return true;
@@ -103,10 +103,10 @@ window.onload = function () {
         }
 
         //Game over if snake kiss the wall or self =)
-        if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || eatSelf(newSnakeHead,snake)){
+        if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || kissSelf(newSnakeHead,snake)){
             location.reload();
         }
-
+        //Add new item to start of array
         snake.unshift(newSnakeHead);
     }
     setInterval(draw, 100);
