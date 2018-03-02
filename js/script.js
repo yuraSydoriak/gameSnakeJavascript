@@ -15,7 +15,20 @@ window.onload = function () {
     //Default direction
     var direction = "RIGHT";
 
+    //Binding direction
+    document.addEventListener("keydown", getDirection);
 
+    function getDirection(e){
+        if(e.keyCode == 39){
+            direction = "RIGHT";
+        } else if (e.keyCode == 38){
+            direction = "TOP";
+        } else if (e.keyCode == 37){
+            direction = "LEFT";
+        } else if (e.keyCode == 40){
+            direction = "DOWN";
+        }
+    }
 
     function drawSnake(x, y) {
         ctx.fillStyle = "#fff";
