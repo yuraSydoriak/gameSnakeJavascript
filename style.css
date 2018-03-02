@@ -14,6 +14,7 @@ canvas {
     background: #000;
     display: block;
     margin: 0 auto;
+    border: red 10px solid;
 }
 #gameInfo {
     width: 600px;

@@ -1,5 +1,8 @@
 window.onload = function () {
 
+    //Buttons
+    var startBtm = document.getElementById("startGame");
+
     // Variables
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -9,7 +12,7 @@ window.onload = function () {
     //Snake
     var snakeW = 20;
     var snakeH = 20;
-    var snakeLen = 4;
+    var snakeLen = 10;
     var snake = [];
 
     //Default direction
@@ -17,6 +20,12 @@ window.onload = function () {
 
     //Listening direction change
     document.addEventListener("keydown", getDirection);
+
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillStyle = "green";
+    ctx.textAlign = "center";
+    ctx.fillText("Start Game Press button", canvasW/2, canvasH/2);
+
 
     function getDirection(e){
         if(e.keyCode == 39 &&  direction != "LEFT"){
@@ -104,10 +113,27 @@ window.onload = function () {
 
         //Game over if snake kiss the wall or self =)
         if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || kissSelf(newSnakeHead,snake)){
-            location.reload();
+
+            console.warn("## Game over");
+
+            clearInterval(startGame);
+
+            ctx.clearRect(0, 0, canvasW + 1, canvasH + 1);
+
+            ctx.font = "30px Comic Sans MS";
+            ctx.fillStyle = "red";
+            ctx.textAlign = "center";
+            ctx.fillText("Game Over", canvasW/2, canvasH/2);
+
+
+
         }
         //Add new item to start of array
         snake.unshift(newSnakeHead);
     }
-    setInterval(draw, 100);
+    var startGame = function(){
+        setInterval(draw, 100);
+    }
+
+    startBtm.addEventListener("click", startGame);
 }
