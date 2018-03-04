@@ -2,6 +2,7 @@ window.onload = function () {
 
     //Buttons
     var startBtm = document.getElementById("startGame");
+    var resetButton = document.getElementById("resetButton");
 
     // Variables
     var canvas = document.getElementById('canvas');
@@ -9,10 +10,14 @@ window.onload = function () {
     var canvasW = canvas.width;
     var canvasH = canvas.height;
 
+
+    //Border for canvas 
+    canvas.style.border = '1px solid black';
+
     //Snake
     var snakeW = 20;
     var snakeH = 20;
-    var snakeLen = 10;
+    var snakeLen = 4;
     var snake = [];
 
     //Default direction
@@ -21,10 +26,10 @@ window.onload = function () {
     //Listening direction change
     document.addEventListener("keydown", getDirection);
 
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "30px Georgia";
     ctx.fillStyle = "green";
     ctx.textAlign = "center";
-    ctx.fillText("Start Game Press button", canvasW/2, canvasH/2);
+    ctx.fillText("Press Start Button", canvasW/2, canvasH/2);
 
 
     function getDirection(e){
@@ -50,16 +55,16 @@ window.onload = function () {
     }
 
     function drawSnake(x, y) {
-        ctx.fillStyle = "#fff";
+        ctx.fillStyle = "#CFD8DC";
         ctx.fillRect(x*snakeW, y*snakeH, snakeW, snakeH);
 
-        ctx.fillStyle = "#000";
+        ctx.fillStyle = "#ECEFF1";
         ctx.strokeRect(x*snakeW, y*snakeH, snakeW, snakeH);
     }
 
     //Create snake
     for (var i = snakeLen - 1; i>=0; i--){
-        snake.push( {x:i, y:0} );
+        snake.push( {x:i+1, y:10} );
     }
     //Create food
     var  food = {
@@ -114,26 +119,28 @@ window.onload = function () {
         //Game over if snake kiss the wall or self =)
         if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || kissSelf(newSnakeHead,snake)){
 
-            console.warn("## Game over");
-
             clearInterval(startGame);
 
-            ctx.clearRect(0, 0, canvasW + 1, canvasH + 1);
+            //Message about Game over with small delay
+            function gameOverMSG (){
+                ctx.clearRect(0, 0, canvasW, canvasH);
+                ctx.font = "30px Georgia";
+                ctx.fillStyle = "red";
+                ctx.textAlign = "center";
+                ctx.fillText("Sorry but - Game Over", canvasW/2, canvasH/2);
+            }
 
-            ctx.font = "30px Comic Sans MS";
-            ctx.fillStyle = "red";
-            ctx.textAlign = "center";
-            ctx.fillText("Game Over", canvasW/2, canvasH/2);
-
-
-
+            setTimeout(function (){gameOverMSG ()}, 200);
         }
         //Add new item to start of array
         snake.unshift(newSnakeHead);
     }
-    var startGame = function(){
-        setInterval(draw, 100);
+
+    var startGame = setInterval(function(){ draw() }, 100);
+
+    function resetGame(){
+        location.reload(true);
     }
 
-    startBtm.addEventListener("click", startGame);
+    resetButton.addEventListener("click", resetGame);
 }

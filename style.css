@@ -4,26 +4,38 @@ body {
 }
 .container {
     box-sizing: border-box;
-    width: 602px;
-    margin: 0 auto;
     position: relative;
     overflow: hidden;
 }
+
 canvas {
     box-sizing: border-box;
-    background: #000;
+    background: #ECEFF1;
     display: block;
     margin: 0 auto;
-    border: red 10px solid;
+    margin-bottom: 10px;
+    border-radius: 3px;
 }
-#gameInfo {
-    width: 600px;
-    background: #000;
-    margin-top: 5px;
+.buttons {
+    width: 500px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
 }
-#gameScore {
-    width: 20%;
-    float: left;
-    height: 20px;
-
+.btn{
+    display: table-cell; 
+    vertical-align: middle;
+    width: 170px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: #ECEFF1;
+    text-align: center;
+}
+.btn:hover{
+    background-color: #ECEF11;
+    cursor: pointer;
+}
+.hidden{
+    display: none;
 }
