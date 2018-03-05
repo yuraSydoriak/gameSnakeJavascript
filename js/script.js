@@ -26,10 +26,10 @@ window.onload = function () {
     //Listening direction change
     document.addEventListener("keydown", getDirection);
 
-    ctx.font = "30px Georgia";
-    ctx.fillStyle = "green";
-    ctx.textAlign = "center";
-    ctx.fillText("Press Start Button", canvasW/2, canvasH/2);
+    // ctx.font = "30px Georgia";
+    // ctx.fillStyle = "green";
+    // ctx.textAlign = "center";
+    // ctx.fillText("Press Start Button", canvasW/2, canvasH/2);
 
 
     function getDirection(e){
