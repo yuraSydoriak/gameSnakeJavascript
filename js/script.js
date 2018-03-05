@@ -1,5 +1,7 @@
 window.onload = function () {
 
+    alert("Use RIGHT LEFT TOP DOWN buttons for control ");
+
     //Buttons
     var startBtm = document.getElementById("startGame");
     var resetButton = document.getElementById("resetButton");
