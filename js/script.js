@@ -30,6 +30,7 @@ window.onload = function () {
         var snakeH = 20;
         var snakeLen = 4;
         var snake = [];
+        var score = 0;
 
         //Default direction
         var direction = "RIGHT";
@@ -116,6 +117,7 @@ window.onload = function () {
 
             //snake its the food
             if(snakeX == food.x && snakeY == food.y){
+                score++;
                 food = {
                     x : Math.floor(Math.random()*(canvasW / snakeW - 1)+1),
                     y : Math.floor(Math.random()*(canvasH / snakeH - 1)+1)
@@ -136,6 +138,11 @@ window.onload = function () {
                 y : snakeY
             }
 
+            //Show score
+            ctx.font = "14px Georgia";
+            ctx.fillStyle = "green";
+            ctx.fillText("Score :"+ score, canvasW/12, canvasH/24);
+
             //Game over if snake kiss the wall or self =)
             if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || kissSelf(newSnakeHead,snake)){
 
@@ -147,13 +154,14 @@ window.onload = function () {
                     ctx.font = "30px Georgia";
                     ctx.fillStyle = "red";
                     ctx.textAlign = "center";
-                    ctx.fillText("Sorry but - Game Over", canvasW/2, canvasH/2);
+                    ctx.fillText("Sorry, but - Game Over", canvasW/2, canvasH/2);
                 }
 
                 setTimeout(function (){gameOverMSG ()}, 200);
             }
             //Add new item to start of array
             snake.unshift(newSnakeHead);
+
         }
 
         var startGame = setInterval(function(){ draw() }, 100);
