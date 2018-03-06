@@ -18,15 +18,14 @@ canvas {
 }
 .buttons {
     width: 500px;
+    height: 200px;
     margin: 0 auto;
     display: block;
     position: relative;
 }
 .btn{
-    display: table-cell; 
+    display: table-cell;
     vertical-align: middle;
-    width: 170px;
-    height: 50px;
     border: 1px solid black;
     border-radius: 3px;
     background-color: #ECEFF1;
@@ -35,7 +34,32 @@ canvas {
 .btn:hover{
     background-color: #34ff4c;
     cursor: pointer;
+    color: #fff;
 }
-.hidden{
-    display: none;
+
+#newGameBtn{
+    float: left;
+    width: 150px;
+    padding: 13px 0;
+}
+.controlBtns{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    border-spacing: 10px 0;
+}
+.cntrlBtn{
+    width: 50px;
+    height: 50px;
+}
+.topCtrlBtn{
+    margin-left: 50px;
+}
+.nonVisible{
+    border: none;
+    background-color: aliceblue;
+}
+.nonVisible:hover{
+    background-color: aliceblue;
+    cursor: default;
 }
