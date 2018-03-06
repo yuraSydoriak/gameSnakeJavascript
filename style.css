@@ -56,7 +56,7 @@ canvas {
     margin-left: 50px;
 }
 .nonVisible{
-    border: none;
+    border: 1px solid aliceblue;
     background-color: aliceblue;
 }
 .nonVisible:hover{
