@@ -141,7 +141,7 @@ window.onload = function () {
             //Show score
             ctx.font = "14px Georgia";
             ctx.fillStyle = "green";
-            ctx.fillText("Score :"+ score, canvasW/12, canvasH/24);
+            ctx.fillText("Score : "+ score, canvasW/12, canvasH/24);
 
             //Game over if snake kiss the wall or self =)
             if (snakeX < 0 || snakeY < 0 || snakeX >= canvasW/snakeW || snakeY >= canvasH/snakeH || kissSelf(newSnakeHead,snake)){
@@ -154,7 +154,7 @@ window.onload = function () {
                     ctx.font = "30px Georgia";
                     ctx.fillStyle = "red";
                     ctx.textAlign = "center";
-                    ctx.fillText("Sorry, but - Game Over", canvasW/2, canvasH/2);
+                    ctx.fillText("Game Over - Your Score : " + score , canvasW/2, canvasH/2);
                 }
 
                 setTimeout(function (){gameOverMSG ()}, 200);
